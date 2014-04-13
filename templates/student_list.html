@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<h2>Students</h2>
+		<p style="color:red;">
+		{{error}}
+		</p>
+
+        Total Students: {{ totalStudents }} Total Students Verified: {{ totalVerified }}  Total Students Unverified: {{ totalUnverified }}
+
+
+<table style="width:1200px">
+    <tr>
+        <td>Full Name</td>
+        <td>Email Verified</td>
+        <td>Location</td>
+        <td>Country</td>
+        <td>Primary Interest</td>
+        <td>Secondary Interest</td>
+    </tr>
+		{% for item in students %}
+			<tr>
+				{% for info in user_students %}
+					{% if info.id == item.uid_id %}
+
+
+
+						<td><a href="/student/{{info.id}}">{{ info.first_name }} {{ info.last_name }}</a></td>
+                <td>{{ item.email_verified }}</td>
+					{% endif %}
+				{% endfor %}
+				<td>{{item.location}}</td>
+                <td>{{item.country}}</td>
+				<td>{{item.prim_interest}}</td>
+				<td>{{item.sec_interest}}</td>
+			</tr>
+		{% endfor %}
+			
+{% endblock %}

@@ -1,0 +1,30 @@
+{% load staticfiles %}
+
+<style>
+body
+{
+	background-color:#d9edf7 !important;
+}
+</style>
+<link href="{% static "css/bootstrap.css" %}" rel="stylesheet" />
+
+<form action="/apply/{{student_id}}/{{jobid}}" method="post" style="background-color:#d9edf7;" enctype="multipart/form-data">{% csrf_token %}
+	<br>
+	<table>
+	{{form.as_table}}
+	</table>
+	<br>
+
+	<button type="submit" class="btn btn-primary input-xlg">Apply</button>
+	<br>
+</form>
+
+<script>
+$( document ).ready(function() 
+{
+    $('#id_cover_letter').addClass('form-control input-lg');
+    $('#id_cover_letter').css("height", "125px");
+});	
+</script>
+
+

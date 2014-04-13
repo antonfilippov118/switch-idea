@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+
+
+	{% block content %}
+	<div class="contents">
+		<section id="job">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-md-3">
+						<h3 class="sub-heading">About {{ first_name }} {{ last_name }}</h3>
+						<p><strong>{{ employer.company_name }}</strong></p>
+						<p>{{ employer.description }}</p>
+						<p><a href="">company website &rarr;</a></p>
+					</div>
+					<div class="col-xs-12 col-md-9">
+						<h3 class="sub-heading">Job detail <span class="pull-right"><small><a href="index.html">&larr; All Jobs</a></small></span></h3>
+						<div class="content-inner-detail">
+							<h1 class="sub-heading">{{ title }}</h1>
+							<p><i class="glyphicon glyphicon-calendar"></i> {{ pub_date }} | 
+							
+							<i class="glyphicon glyphicon-map-marker"></i> {{ location }} | 
+							
+									<span class="label label-success">{{ jobtype }}</span></p>
+
+							
+							<hr>
+							<legend>Description</legend>
+							<p>{{ description }}</p>
+							
+							
+							<legend>Responsibilities</legend>
+							<p>{{ responsibilities }}</p>
+							
+							
+							<legend>Benefits &amp; Perks</legend>
+							<p>{{ benefits_perks }}</p>
+							
+							
+							<h5>Skills</h5>
+							<ul>
+								<li>HMTL5</li>
+								<li>CSS3</li>
+								<li>JavaScript</li>
+								<li>jQuery / Mojo</li>
+								<li>Codeigniter (optional)</li>
+								<li>SEO (optional)</li>
+							</ul>
+							<br><br>
+						    
+							{% if is_student == True %}
+						    <button id="open-apply" class="btn btn-primary input-lg">Apply To This Job</button>
+						    {% else %}
+						    <button class="btn btn-primary input-lg disabled">Employers Can't Apply</button>
+						    {% endif %}
+						    <br>
+						</div>
+							<iframe class="alert alert-info" id="apply" src="/apply/{{ uid }}/{{ jobpost.id }}" style="width:100%; height:320px;"></iframe>
+							<script>
+								
+								$('#apply').hide();
+								
+								$( '#open-apply' ).click(function() {
+									$('#apply').slideDown();
+									$('#open-apply').fadeOut();
+								});
+							</script>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	
+	
+	
+	
+		<p>Posted by <a href="/employer/{{ employer.uid_id }}">{{ employer.company_name }}</a> on {{ pub_date }}</p>
+		
+		<a href="/apply/{{student_id}}/{{jobid}}">Apply</a>
+	{% endblock %}

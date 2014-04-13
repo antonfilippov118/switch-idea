@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+	{% block content %}
+			<section>
+				<article>
+	
+			
+			
+	<!-- the middle contents -->
+	<div class="contents">
+		<section id="job">
+			<div class="container">
+				<div class="row">
+				
+				
+					<div class="col-xs-12 col-md-3">
+						<h3 class="sub-heading">Representative of</h3>
+						<p><strong>{{employer.company_name}}</strong></p>
+						<div class="col-md-2" style="background-repeat:no-repeat;background-image:url('/static/{{ employer.thumbnail }}'); background-size:contain; width:215px; height:215px; background-position:center; margin:15px;"></div> 
+						<br>
+						<p><button onclick="location.reload();location.href='{{employer.webite}}'" class="btn btn-xlarge btn-default"><i class="fa fa-globe"></i> | {{employer.company_name|truncatechars:17}} Website</button></p>
+						
+						<p><button onclick="location.reload();location.href='{{employer.LinkedIn}}'" class="btn btn-xlarge btn-linkedin"><i class="fa fa-linkedin"></i> | Connect with LinkedIn</button></p>
+						
+						<p><button onclick="location.reload();location.href='{{employer.Twitter}}'" class="btn btn-xlarge btn-twitter"><i class="fa fa-twitter"></i> | Connect with Twitter</button></p>
+						
+						<p><button onclick="location.reload();location.href='{{employer.Facebook}}'" class="btn btn-xlarge btn-facebook"><i class="fa fa-facebook"></i> &nbsp;| Connect with Facebook</button></p>
+						
+						
+						
+					</div>
+					
+					
+					
+					<div class="col-xs-12 col-md-9">
+						<h3 class="sub-heading">Employer detail <span class="pull-right"><small><a href="/jobs">&larr; All Jobs</a></small></span></h3>
+						<div class="content-inner-detail">
+							<h1 class="sub-heading">{{user.first_name}} {{user.last_name}}</h1>
+							<p><span class="label label-warning">Member Since: {{ user.date_joined|date }}</span> | <span class="label label-success">Last Login: {{ user.last_login }}</span></p>
+							<hr>
+							<legend>Description</legend>
+							<p>{{employer.e_description}}</p>
+							
+							<p>
+												
+				            {% if uid == employer.uid_id %}
+				                <a href="/createemployer">Update Profile</a>
+				                <br>
+				                <a href="/employeropenings/{{user.id}}">Manage Openings</a>
+				                <br>
+				            {% endif %}
+		            
+						
+		                    {% if uid == employer.uid_id %}
+		                        <a href="/change_name/{{uid}}">Change Name</a>
+		                    {% endif %}
+							<br>
+							
+							<h5><span class="label label-info">Email: {{user.username}}</span></h5>
+							
+							<h5><span class="label label-primary">Cellphone: {{user.email}}</span></h5>
+		                    {% if uid == employer.uid_id %}
+		                        <a href="/change_cellphone">Change Cellphone</a>
+		                    {% endif %}		
+										
+							</p>
+							
+<style>
+.fa
+{
+	font-size: 11pt;
+}
+
+.btn-xlarge
+{
+	text-align: left;
+	width:230px;
+}
+</style>
+							
+
+								
+							
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div><!-- /.contents -->
+	{% endblock %}

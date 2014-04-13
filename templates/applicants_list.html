@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<h2>Manage {{jobpost.title}} Applicants</h2>
+
+
+        <script>
+function printClick()
+{
+  var w = window.open();
+  var html = $("#divToPrintID").html();
+
+  // how do I write the html to the new window with JQuery?
+    $(w.document.body).html(html);
+}
+
+$(function() {
+    $("a#print").click(printClick);
+});
+        </script>
+
+<table style="width:90%">
+			{% for account in students %}
+            {% for application in jobapplication%}
+            <tr>
+						{% if application.student_id == account.id and application.jobpost_id == jobpost.id %}
+							{% for user in user_objects %}
+								{% if user.id == account.uid_id %}
+									<td>{{ user.first_name }} {{ user.last_name }}</td> <td>{{ user.username }}</td> <td>{{ user.email }}</td> <td>{{ application.pub_date }}</td>
+
+               <td><textarea id="divToPrintID" rows="1" cols="1">{{ application.cover_letter }}</textarea> <a href="#" id="print">Open Cover Letter</a></td>
+
+								{% endif %}
+							{% endfor %}
+								<td>{{ account.prim_interest }}</td> <td>{{ account.location }}</td> <td>{{ account.country }}</td>
+								<td><a href="/static/{{account.resume}}">Resume</a></td>
+						{% endif %}
+            </tr>
+            {% endfor %}
+			{% endfor %}
+		</table>
+
+
+{% endblock %}

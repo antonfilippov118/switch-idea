@@ -1,0 +1,171 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Job Portal</title>
+
+  <!-- styles -->
+  <link href="{% static "css/bootstrap-tagsinput.css" %}" rel="stylesheet" />
+  <link href="{% static "css/bootstrap.css" %}" rel="stylesheet" />
+  <link href="{% static "css/custom.css" %}" rel="stylesheet" />
+  <link href="{% static "css/CSS3-Buttons.css" %}" rel="stylesheet" />
+  <link href="{% static "css/jquery-ui-1.10.4.css" %}" rel="stylesheet" />
+  <link href="{% static "css/social-buttons.css" %}" rel="stylesheet" />
+  <link href="{% static "css/chosen.css" %}" rel="stylesheet" />
+  <link href="{% static "css/font-awesome.css" %}" rel="stylesheet" />
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script type="text/javascript" src="js/html5shiv.js"></script>
+  <![endif]-->
+
+  <!-- fav and touch icons -->
+  <link rel="shortcut icon" href="#" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="#" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="#" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="#" />
+  <link rel="apple-touch-icon-precomposed" href="#" />
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="{% static "js/jquery.1.10.2.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/html5shiv.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/bootstrap-tagsinput.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/jquery-ui-1.10.4.js" %}"></script>
+  
+    <script type="text/javascript" src="{% static "js/chosen.jquery.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/prism.js" %}"></script>
+
+</head>
+
+<body>
+
+
+
+  <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
+
+
+
+<div class="login-form">
+<br><br><br>
+				<div class="inner-login hidden-sm hidden-xs"
+					   <br><br><br><br>
+					   <form action="/auth/" method="get">
+					    <input style="display:inline; width:38%;" name="username" type="text" class="form-control" id="exampleInputUsername1" placeholder="Email">
+					   
+					    <input style="display:inline; width:38%;" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+					  	
+					  	<button type="submit" class="btn btn-primary">Submit</button>
+					   </form>
+				</div>
+				
+				<div id="login-slide" class="inner-login hidden-md hidden-lg" style="width:90%;" >
+					   <br><br><br><br>
+					   <form action="/auth/" method="get">
+					    <input style="display:inline; width:35%;" name="username" type="text" class="form-control" id="exampleInputUsername1" placeholder="Email">
+					   
+					    <input style="display:inline; width:35%;" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+					  	
+					  	<button type="submit" class="btn btn-primary">Submit</button>
+					   </form>
+				</div>
+</div>
+
+<div class="body-login">
+	<!-- the top head -->
+	<div class="navbar navbar-fixed-top" role="navigation">
+		<div class="container">
+	  		<div class="navbar-header">
+		  		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			    </button>
+		  		<!-- Be sure to leave the brand out there if you want it shown -->
+	    		<a class="navbar-brand" href="/jobs/"
+	    		style="background-repeat:no-repeat;background-image:url('/static/img/switchidea-logo.png'); background-size:contain; width:249px; height:54px; display:inline-block;"></a>
+    		</div>
+
+			  <!-- post or upload cv -->
+			 <div class="collapse navbar-collapse navbar-ex1-collapse">
+			 
+			 
+
+			  
+			  
+				<!-- the menu -->
+		  		<div style="float:right;">
+		  		{% if username %}
+				  <button style="margin-top:10px; margin-right:70px;" type="button" class="btn btn-warning dropdown-toggle dropdown-menu-left hidden-lg" data-toggle="dropdown">
+				     <b>{{ first_name }}</b> &nbsp;<span class="glyphicon glyphicon-user"> </span>
+				  </button>
+				  <button style="margin-top:10px;" type="button" class="btn btn-warning dropdown-toggle dropdown-menu-left visible-lg" data-toggle="dropdown">
+				     <b>{{ first_name }}</b> &nbsp;<span class="glyphicon glyphicon-user"> </span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu" style="float:right;">
+				  {% if is_student == True %}
+				  	<li><a href="/student/{{ uid }}"><b>Profile</b></a></li>
+				  {% else %}
+				    <li><a href="/employer/{{ uid }}"><b>Profile</b></a></li>
+				  {% endif %}	    
+				    <li class="divider"></li>
+				    <li><a href="/logout/"><b>Sign out</b></a></li>
+				  </ul>
+		  		{% else %}
+		        	<a href="/login/" id="btn-sign-in" class="btn btn-default navbar-btn"><b>Sign in</b> &nbsp;<span class="glyphicon glyphicon-log-in"> </span> </a>
+		      		<a href="/registers/" class="btn btn-warning navbar-btn"><b>Sign up</b> &nbsp;<span class="glyphicon glyphicon-check"> </span> </a>
+		      	{% endif %}
+		      	</div>
+		      	
+			</div>
+		</div><!-- /.container -->
+	</div>
+	<!-- /.navbar -->
+
+
+								
+						
+								{% block content %}
+								{% endblock %}
+
+<script>
+/*
+$( document ).ready(function() 
+{
+	$("#btn-sign-in").click(function()
+		{
+		  $(".login-form").slideToggle();
+		});
+});
+*/
+</script>
+
+	<!-- the footer -->
+	<footer>
+		<div class="container">
+			<p class="pull-left">About | Terms | Privacy | FAQ | Support | Contact</p>
+			<p class="pull-right">SwitchIdea &copy; 2014 All Rights Reserved</p>
+		</div>
+	</footer>
+
+  <!-- Javascript
+    ================================================== -->
+
+</div>
+</body>
+</html>

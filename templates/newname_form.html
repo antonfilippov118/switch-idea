@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<style>
+label
+{
+float:left;
+}
+
+input.r
+{
+float:right;
+}
+</style>
+
+	<br>
+	<article style="height:380px;" class="coolshadow">
+		<p style="color:red;">
+		{{error}}
+		</p>
+		<br>
+		<p style="color:#634271;">{{notice}}</p>
+	<br>
+
+		<div class="outer">
+			<form style="float:left;" action="/change_name_finished/" method="get">
+				<label for="first_name">First name:</label>
+				<input class="r" type="text" name="first_name" value="" id="first_name">
+				<br> <br>
+				<label for="last_name">Last name:</label>
+				<input class="r" type="last_name" name="last_name" value="" id="last_name">
+				<br> <br>
+				<input class="r" type="submit" value="submit" />
+			</form>
+		</div>
+
+	</article>
+
+{% endblock %}

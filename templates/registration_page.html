@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+
+	{% block content %}
+	<br>
+		{% if form.errors %}
+			<p class="error">Sorry, that's not a valid username or password</p>
+		{% endif %}
+
+		
+	<!-- the middle contents -->
+	<div class="contents">
+	<center><h3 class="sub-heading">Sign up for SwitchIdea</h3></center>
+			<section id="post">
+				
+							<!-- MOBILE DEVICES -->
+					<div class="container">
+					<br>
+								<div class="content-inner-detail visible-xs" >
+											<form role="form" action="/auth/" method="get" >
+							<legend>Sign up</legend>
+							
+
+										<div class="form-group">
+									    <label for="exampleInputEmail1">First Name</label>
+									    <input type="text" class="form-control input-lg" placeholder="James" name="first_name" value="" id="first_name">
+									  	</div>
+
+										<div class="form-group">
+									    <label for="exampleInputEmail1">Last Name</label>
+									    <input type="text" class="form-control input-lg" placeholder="Raynor" value="" name="last_name" value="" id="last_name">
+									  	</div>
+
+
+			
+										<div class="form-group">
+										    <label for="exampleInputEmail1">Email</label>
+										    <input type="text" class="form-control input-lg" id="username" placeholder="Email" name="username">
+									  	</div>
+
+										<div class="form-group">
+										    <label for="exampleInputEmail1">Mobile Phone</label>
+										    <input type="text" class="form-control input-lg" id="username" placeholder="(215) 555 2019" name="email_get" value="" id="email_get">
+									  	</div>
+
+							
+						  
+						
+									  	<div class="form-group">
+										    <label for="exampleInputPassword1">Password</label>
+										    <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="Password" id="password" name="password">
+									  	</div>
+
+									  	<div class="form-group">
+										    <label for="exampleInputPassword1">Retype Password</label>
+										    <input placeholder="Verify Password" class="form-control input-lg" type="password" name="repassword" value="" id="repassword">
+									  	</div>
+						
+						  	
+						  	<br>
+						  	<button type="submit" class="btnblue btn-primary input-lg btn-block"><b>Sign Up</b> <span class="glyphicon glyphicon-chevron-right"></span></button>
+						</form>
+											
+											{% if form.errors %}
+												<p style="color:red;">Sorry, that's not a valid username or password</p>
+											{% endif %}
+								</div>		
+					</div>
+							<!-- MOBILE DEVICES END -->
+							
+							
+							
+							<!-- NON-MOBILE DEVICES -->
+					<div class="container-fluid">
+							<div class="content-inner-detail hidden-xs" style="margin-left:28%; margin-right:28%;">
+								<form role="form" action="/auth/" id="regform" method="get" >
+									<legend>Select Account Type</legend>
+										<div class="btn-group btn-group-justified">
+										  <div class="btn-group">
+										    <button type="button" id="rdoStudent" class="btn btn-default">Student</button>
+										  </div>
+										  <div class="btn-group">
+										    <button type="button" id="rdoEmployer" class="btn btn-default">Employer</button>
+										  </div>
+										</div>
+									
+										<br>
+									
+									<div class="row">
+											<div class="col-xs-12 col-md-6">
+												<div class="form-group">
+											    <label for="exampleInputEmail1">First Name</label>
+											    <input type="text" class="form-control input-lg" placeholder="James" name="first_name" value="" id="first_name">
+											  	</div>
+											</div>
+											
+										  	<div class="col-xs-12 col-md-6">
+												<div class="form-group">
+											    <label for="exampleInputEmail1">Last Name</label>
+											    <input type="text" class="form-control input-lg" placeholder="Raynor" value="" name="last_name" value="" id="last_name">
+											  	</div>
+										  	</div>
+									</div>
+												
+									<div class="row">
+											<div class="col-xs-12 col-md-6">
+												<div class="form-group">
+												    <label for="exampleInputEmail1">Email</label>
+												    <input type="text" class="form-control input-lg" id="username" placeholder="Email" name="username">
+											  	</div>
+											</div>
+											  	
+											<div class="col-xs-12 col-md-6">  	
+												<div class="form-group">
+												    <label for="exampleInputEmail1">Mobile Phone</label>
+												    <input type="text" class="form-control input-lg" id="email_get" placeholder="(215) 555 2019" name="email_get" value="">
+											  	</div>
+											</div>
+									</div>
+								  	
+								  	<div class="row">
+										  	<div class="col-xs-12 col-md-6">
+											  	<div class="form-group">
+												    <label for="exampleInputPassword1">Password</label>
+												    <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="Password" id="password" name="password">
+											  	</div>
+										  	</div>
+											  	
+											<div class="col-xs-12 col-md-6">
+											  	<div class="form-group">
+												    <label for="exampleInputPassword1">Retype Password</label>
+												    <input placeholder="Verify Password" class="form-control input-lg" type="password" name="repassword" value="" id="repassword">
+											  	</div>
+										  	</div>
+									</div>
+									<br>
+
+									
+								  	<br>
+								  	<button type="submit" class="btnblue btn-primary input-lg btn-block" style="width:250px; margin-left:auto; margin-right:auto;"><b>Sign Up</b> <span class="glyphicon glyphicon-chevron-right"></span></button>
+								</form>
+								
+								{% if form.errors %}
+									<p style="color:red;">Sorry, that's not a valid username or password</p>
+								{% endif %}
+							</div>
+					</div>
+							<!-- NON-MOBILE DEVICES END -->
+			</section>
+	</div><!-- /.contents -->
+		
+		<br><br><br><br><br><br><br>
+		<script>
+	
+			$( document ).ready(function() 
+				{	    
+				
+					//make mobile number numbers only
+				    $("#email_get").keydown(function (e) {
+				        // Allow: backspace, delete, tab, escape, enter and .
+				        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+				             // Allow: Ctrl+A
+				            (e.keyCode == 65 && e.ctrlKey === true) || 
+				             // Allow: home, end, left, right
+				            (e.keyCode >= 35 && e.keyCode <= 39)) {
+				                 // let it happen, don't do anything
+				                 return;
+				        }
+				        // Ensure that it is a number and stop the keypress
+				        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				            e.preventDefault();
+				        }
+				    });
+				
+					$( "#rdoStudent" ).click(function() 
+						{
+							$(this).addClass('btn btn-success');
+							$("#rdoEmployer").removeClass().addClass('btn btn-default');
+							var frm = document.getElementById('regform') || null;
+							frm.action = "/registers/"
+						});
+					
+					$( "#rdoEmployer" ).click(function() 
+						{
+							$(this).addClass('btn btn-success');
+							$("#rdoStudent").removeClass().addClass('btn btn-default');
+							var frm = document.getElementById('regform') || null;
+						  	frm.action = "/registere/"
+						});				    			    
+				});
+		</script>
+	
+	{% endblock %}

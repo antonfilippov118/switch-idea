@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<style>
+label
+{
+float:left;
+}
+
+input.r
+{
+float:right;
+}
+</style>
+
+	<br>
+	<article style="height:380px;" class="coolshadow">
+		<p style="color:red;">
+		{{error}}
+		</p>
+		<br>
+		<p style="color:#634271;">{{notice}}</p>
+	<br>
+
+		<div class="outer">
+			<form style="float:left;" action="/change_cellphone_finished/" method="get">
+				<label for="cellphone">Mobile Phone:</label>
+				<input class="r" type="text" name="cellphone" value="" id="cellphone">
+				<br> <br>
+				<input class="r" type="submit" value="submit" />
+			</form>
+		</div>
+
+	</article>
+
+{% endblock %}

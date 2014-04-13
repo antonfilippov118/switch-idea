@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+	<!-- the middle contents -->
+	<div class="contents">
+		<section id="search-container">
+			<div class="container">
+				<div id="search-box">
+				
+				
+					{% if totalJobs < totalApplicants %}
+						<h1>We currently have <strong>{{ totalJobs }}</strong> job posts but only <strong>{{ totalApplicants }}</strong> applicants</h1>
+					{% elif totalJobs > totalApplicants %}
+						<h1>We currently have <strong>{{ totalJobs }}</strong> job posts and <strong>{{ totalApplicants }}</strong> applicants</h1>
+					{% endif %}
+					
+					
+					
+					<form class="form-inline">
+					  	<input type="text" class="btn-block" autofocus="autofocus" placeholder="Example: Software developer">
+					</form>
+				</div>
+			</div>
+		</section>
+
+
+
+
+
+
+		<section id="featured">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-md-3">
+				  {% if is_student == True %}
+			
+				  {% else %}
+		<button id="post_opening" type="submit" class="btnblue btn-primary input-lg btn-block"><span class="glyphicon glyphicon-plus"> </span> &nbsp;<b>Post an Opening</b></button>
+				  {% endif %}	 
+
+            
+		
+						
+						<script>
+							
+ $('#post_opening').click(function() {
+   document.location.href='/create/';
+ });
+ 
+ $('#post_opening_noauth').click(function() {
+   document.location.href='/createNewEmployer/';
+ });
+							
+						</script>
+						<br>
+						
+						<form>
+					  		<div class="form-group">
+					  		
+					  		
+					  		
+					  		
+						    <label>Job category</label>
+						    <select class="form-control input-lg">
+						    
+						    	<option>All Categories</option>
+						    	{% for cat in categories %}
+							  	<option>{{ cat.title }}</option>
+							  	{% endfor %}
+
+							</select>
+						    </div>
+						    
+						    
+						    
+						    <div class="form-group">
+						    
+						    
+						    <label>Location</label>
+						    <select class="form-control input-lg">
+						    
+						    
+						    	<option>All Locations</option>
+						    	{% for point in locations %}
+							  	<option>{{ point.title }}</option>
+							  	{% endfor %}
+
+
+							</select>
+							
+							
+							
+							
+							<small class="help-block"></small>
+							</div>
+							<div class="form-group">
+	
+							<small class="help-block"></small>
+							</div>
+							<div class="row">
+							  	<div class="col-xs-12 col-md-6">
+									<div class="checkbox">
+								      	<label>
+								        	<input type="checkbox"> Freelance
+								     	</label>
+								 	</div>
+							  	</div>
+							  	<div class="col-xs-12 col-md-6">
+									<div class="checkbox">
+								      	<label>
+								        	<input type="checkbox"> Contract
+								     	</label>
+								 	</div>
+							  	</div>
+							</div>
+						    <div class="row">
+							  	<div class="col-xs-12 col-md-6">
+									<div class="checkbox">
+								      	<label>
+								        	<input type="checkbox"> Full time
+								     	</label>
+								 	</div>
+							  	</div>
+							  	<div class="col-xs-12 col-md-6">
+									<div class="checkbox">
+								      	<label>
+								        	<input type="checkbox"> Part time
+								     	</label>
+								 	</div>
+							  	</div>
+							</div>
+
+						</form>
+					</div>
+					<div class="col-xs-12 col-md-9">
+						<h3 class="sub-heading">
+							Featured jobs
+							<span class="pull-right"><small>1 - 20 results</small></span>
+						</h3>
+						<table class="table table-hover">
+						  <tbody>
+		{% for item in jobposts %}
+			{% if item.is_published %}
+			<tr></tr>
+					  		<tr >
+					  			
+					  			
+				{% for emp in employers %}
+					 {% if emp.id == item.employer_id %}
+					 			<td onclick="window.open('/job/{{ item.id }}/')">
+					 			</td>
+					 			
+					 			<td onclick="window.open('/job/{{ item.id }}/')">
+					  				<div style="background-repeat:no-repeat;background-image:url('/static/{{ emp.thumbnail }}'); background-size:contain; width:40px; height:40px; display:inline-block;"></div>
+					  			</td>
+					  						
+					  			<td onclick="window.open('/job/{{ item.id }}/')">	  				
+					  				<p> {{ item.title }} </p>
+					  				<p> {{ emp.company_name }} </p>
+					  			</td>
+					  			
+					  			<td onclick="window.open('/job/{{ item.id }}/')">
+					  				{% for type in jobtypes %}
+					  					{% if type.id == item.type_id %}
+					  						<p><small class="label label-success">{{ type.title }}</small></p>
+					  					{% endif %}
+					  				{% endfor %}
+					  			</td>
+					  			<td class="job-location"  onclick="window.open('/job/{{ item.id }}/')">	  			
+						  			{% for point in locations %}
+						  				{% if point.id == item.location_id %}
+					  						<p><i class="glyphicon glyphicon-map-marker"></i> {{ point.title }}</p>
+					  					{% endif %}
+					  				{% endfor %}
+					  			</td>
+					  		</tr>	
+					 {% endif %}
+				{% endfor %}
+				
+			{% endif %}
+		{% endfor %}
+
+					  		</tbody>
+						</table>
+
+
+
+
+
+						
+						
+						
+						
+					</div>	
+				</div>
+			</div>
+		</section>
+	</div><!-- /.contents -->			
+{% endblock %}

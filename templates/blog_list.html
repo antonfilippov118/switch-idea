@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<h2>Blog</h2>
+	
+		<p style="color:red;">
+		{{error}}
+		</p>
+		
+		<p>
+			<input type="radio" name="job-type" value="internships">Internships<br>
+			<input type="radio" name="job-type" value="freelance">Freelance<br>
+			<input type="radio" name="job-type" value="fresherjobs">Fresher Jobs<br>
+		</p>
+		<br>
+
+
+
+		{% for post in blogs %}		
+			<h3>{{ post.title }}</h3>
+			<p>{{ post.body }}</p>		
+		{% endfor %}
+
+
+
+		<br>
+		{% for admins in admin %}
+			{% if username == admins.username %}
+				<p> <a href="/newblogpost/{{admins.id}}">New Blog Post</a> </p>
+			{% endif %}
+		{% endfor %}
+		
+{% endblock %}

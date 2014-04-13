@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<h2>Manage Openings</h2>	
+		<ul>
+            {{ employer.company_name }}'s total openings: {{ totalposts }} Total Active: {{ activeposts }} Total Expired: {{ expiredposts }} Total Premium: {{ totalpremium }}
+			{% for post in jobposts %}
+			<table style="width:1300px">
+			
+				<tr> 
+				<td><b>Title</b></td> 
+				<td><b>Applicants</b></td> 
+				<td><b>Post Date</b></td> 
+				<td><b>Expiry Date</b></td> 
+				<td><b>Status</b></td> 
+				<td><b>Actions</b></td> 
+				</tr>
+			
+						<tr>
+						<td>{{ post.title }}</td>  
+						
+						<td>{{ post.applicants }}</td>  
+						
+						<td>{{ post.pub_date }}</td>  
+						
+						<td>{{ post.deadline }}</td>  		
+					
+						<td>
+						{% if post.is_approved == 0 %}
+							Awaiting Approval,&nbsp;
+						{% endif %}		
+							
+						{% if post.pub_date < post.deadline %}
+							Active
+						{% elif post.pub_date > post.deadline %}
+							Expired
+						{% endif %}
+						</td>	
+						
+						<td><a href="/applicants/{{post.id}}">View</a></td>	
+							
+				</tr>
+			</table>
+			{% endfor %}
+		</ul>
+{% endblock %}

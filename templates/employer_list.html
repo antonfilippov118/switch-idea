@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<h2>Employers</h2>
+		<p style="color:red;">
+		{{error}}
+		</p>
+
+        Total Employers: {{ totalEmployers }} Total Employers Verified: {{ totalVerified }}  Total Employers Unverified: {{ totalUnverified }}
+
+
+<table style="width:1200px">
+    <tr>
+        <td>Full Name</td>
+        <td>Email Verified</td>
+        <td>Company</td>
+        <td>LinkedIn</td>
+        <td>Website</td>
+        <td>Twitter</td>
+        <td>Facebook</td>
+    </tr>
+		{% for item in employers %}
+			<tr>
+				{% for info in user_employers %}
+					{% if info.id == item.uid_id %}
+						<td><a href="/employer/{{info.id}}">{{ info.first_name }} {{ info.last_name }}</a></td> <td>{{ item.email_verified }} </td>
+					{% endif %}
+				{% endfor %}
+				<td>{{item.company_name}}</td>
+                <td>{{item.LinkedIn}}</td>
+				<td>{{item.website}}</td>
+				<td>{{item.Twitter}}</td>
+                <td>{{item.Facebook}}</td>
+                <td>
+
+                    {% for post in jobposts %}
+                        {% if item.id == post.employer_id %}
+                            {{ post.id }}
+                        {% endif %}
+                    {% endfor %}
+
+                </td>
+			</tr>
+		{% endfor %}
+
+
+
+</table>
+{% endblock %}

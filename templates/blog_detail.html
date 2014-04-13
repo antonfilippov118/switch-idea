@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+	{% block content %}
+			<section>
+				<article>
+					<h3>{{user.first_name}} {{user.last_name}}</h3>
+					
+					<h5>Email: {{user.username}}</h5>
+					
+					<h5>Cellphone: {{user.email}}</h5>
+				</article>
+				
+				<article>
+					<br>
+					<p>Primary Interest: {{student.prim_interest}}</p>
+					<p>Secondary Interest: {{student.sec_interest}}</p>
+					<br>
+					<p>About me: {{student.title}}</p>
+				</article>
+			</section>
+			<a href="/apply/{{student_id}}/{{jobid}}">Contact</a>
+	{% endblock %}
