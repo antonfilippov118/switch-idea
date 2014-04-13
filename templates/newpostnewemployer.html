@@ -475,7 +475,9 @@ $( document ).ready(function()
 
     $('select').change(function(){
         $(this).removeClass('error');
-    })
+    });
+
+    $('#id_compensation').removeAttr('type');
 
 	$( '#goto-page2' ).click(function() 
 		{
