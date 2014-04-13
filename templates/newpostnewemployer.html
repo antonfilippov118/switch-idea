@@ -473,6 +473,10 @@ $( document ).ready(function()
         $(this).removeClass('error');
     });
 
+    $('select').change(function(){
+        $(this).removeClass('error');
+    })
+
 	$( '#goto-page2' ).click(function() 
 		{
 			var firstname = $('#id_first_name').val();
