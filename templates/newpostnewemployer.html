@@ -465,7 +465,14 @@ $( document ).ready(function()
 	  $('#redirect-url').slideUp();
 	});
 	
-	
+	$('input').focus(function(){
+        $(this).removeClass('error');
+    });
+
+    $('textarea').focus(function(){
+        $(this).removeClass('error');
+    });
+
 	$( '#goto-page2' ).click(function() 
 		{
 			var firstname = $('#id_first_name').val();
@@ -473,7 +480,7 @@ $( document ).ready(function()
 			var email = $('#id_email').val();
 			var phone = $('#id_phone').val();
 			
-			var title = $('#id_id_title').val();
+			var title = $('#id_title').val();
 			var description = $('#id_j_description').val();
 			
 			var id_responsibilities = $('#id_responsibilities').text();
@@ -484,30 +491,37 @@ $( document ).ready(function()
 			
 			if (firstname == '')
 				{
+                    $('#id_first_name').addClass('error');
 					$('#page1-error').slideDown();
 				}
 			else if (lastname == '')
 				{
+                    $('#id_last_name').addClass('error');
 					$('#page1-error').slideDown();
 				}
 			else if (email == '')
 				{
+                    $('#id_email').addClass('error');
 					$('#page1-error').slideDown();
 				}
 			else if (phone == '')
 				{
+                    $('#id_phone').addClass('error');
 					$('#page1-error').slideDown();
 				}
 			else if (title == '')
 				{
+                    $('#id_title').addClass('error');
 					$('#page1-error').slideDown();
 				}
 			else if (description == '')
 				{
+                    $('#id_j_description').addClass('error');
 					$('#page1-error').slideDown();
 				}
 			else if (skills == null)
 				{
+                    $('#id_skills').addClass('error');
 					$('#page1-error').slideDown();
 				}
 			else
